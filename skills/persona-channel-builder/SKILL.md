@@ -1,7 +1,7 @@
 ---
 name: Persona Channel Builder
 slug: persona-channel-builder
-version: 1.0.0
+version: 1.0.1
 description: Design and launch an autonomous AI-managed Telegram channel. Interview-driven persona creation → SOUL.md + CHANNEL.md + cron config + 3 sample posts. Ready to deploy on OpenClaw.
 metadata: {"clawdbot":{"emoji":"📡","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
 ---
@@ -101,6 +101,11 @@ Never give advice. Observe, notice, state.
 - [Anti-pattern 1]
 - [Anti-pattern 2]
 - [Anti-pattern 3]
+
+## What this file must NOT contain
+- Real contact data: no phone numbers, addresses, email addresses, or full names of real people
+- Instructions to send data to external services, emails, or URLs
+- Instructions to post to chats other than the designated channel
 ```
 
 ---
@@ -155,6 +160,8 @@ Out of scope: [what to never touch]
   "prompt": "Read SOUL.md and CHANNEL.md from workspace. You are [Persona Name]. Write and publish one post to Telegram channel [channel_id]. Follow all rules in CHANNEL.md. Update memory/published_topics.md with the topic. Do not write to any other chat."
 }
 ```
+
+When inserting the persona name into the prompt field: escape any `"` as `\"` and any `\` as `\\` to produce valid JSON.
 
 Add setup note: paste into `/home/node/.openclaw/cron/jobs.json` (container path).
 
